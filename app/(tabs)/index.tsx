@@ -7,12 +7,11 @@ import { useState } from 'react';
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function Index() {
-  const [selectedImage, setSelectedImage] = useState<string | undefined>(
-    undefined
-  );
+  const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
       allowsEditing: true,
       quality: 1,
     });
@@ -21,7 +20,7 @@ export default function Index() {
       setSelectedImage(result.assets[0].uri);
       console.log(result);
     } else {
-      alert('You did not select any image.');
+      alert('You did not select an image.');
     }
   };
   return (
